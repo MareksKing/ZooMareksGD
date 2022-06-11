@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,30 +21,30 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @ToString
-public class Animal {
 
-    @Column(name = "animalId")
+public class Visitor {
+
+    @Column(name = "visitorId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(value = AccessLevel.NONE)
-    private int animalId;
+    private int visitorId;
 
-    @Column(name = "animalName")
-    private String title;
+    @Column(name = "visitorName")
+    private String visitorName;
 
-    @Column(name = "animalFood")
-    private AnimalFood food;
+    @Column(name = "visitorSurname")
+    private String visitorSurname;
 
-    @OneToOne(mappedBy = "animal")
-    private Enclosure enclosure;
+    @OneToOne(mappedBy = "visitor")
+    @JoinColumn(name = "ticketId")
+    private Ticket ticket;
 
-    @ManyToOne
-    @JoinColumn(name = "zooName")
-    private Zoo zoo;
-
-    public Animal(String title, AnimalFood food) {
-        this.title = title;
-        this.food = food;
+    public Visitor(String visitorName, String visitorSurname, TicketType ticketType) {
+        this.visitorName = visitorName;
+        this.visitorSurname = visitorSurname;
+        this.ticket.setTicketType(ticketType);
     }
+
     
 }

@@ -1,5 +1,6 @@
 package com.zoo.mareks.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,30 +23,25 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @ToString
-public class Animal {
+public class Enclosure {
 
-    @Column(name = "animalId")
+    @Column(name = "enclosureId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Setter(value = AccessLevel.NONE)
-    private int animalId;
+    private int enclosureId;
 
-    @Column(name = "animalName")
-    private String title;
-
-    @Column(name = "animalFood")
-    private AnimalFood food;
-
-    @OneToOne(mappedBy = "animal")
-    private Enclosure enclosure;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Animal animal;
 
     @ManyToOne
     @JoinColumn(name = "zooName")
     private Zoo zoo;
-
-    public Animal(String title, AnimalFood food) {
-        this.title = title;
-        this.food = food;
+    
+    public Enclosure(Animal animal) {
+        this.animal = animal;
     }
     
+
+
 }
