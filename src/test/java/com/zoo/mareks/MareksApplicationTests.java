@@ -21,7 +21,7 @@ class MareksApplicationTests {
 		Zoo zoo = new Zoo("TestZoo", "TestZooAddress", "TestZooPhone");
 		zooRepo.save(zoo);
 		Animal animal = new Animal("Lauva", AnimalFood.Gala);
-		zoo.setAnimal(Arrays.asList(animal));
+		zoo.setAnimals(Arrays.asList(animal));
 		animalRepo.save(animal);
 		System.out.println(animal);
 	}

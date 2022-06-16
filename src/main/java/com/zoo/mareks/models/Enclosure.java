@@ -35,11 +35,28 @@ public class Enclosure {
     private Animal animal;
 
     @ManyToOne
-    @JoinColumn(name = "zooName")
+    @JoinColumn(name = "zooId")
     private Zoo zoo;
     
     public Enclosure(Animal animal) {
         this.animal = animal;
+    }
+
+    public Enclosure(Animal animal, Zoo zoo) {
+        this.animal = animal;
+        this.zoo = zoo;
+    }
+
+    public Enclosure(Zoo zoo) {
+        this.zoo = zoo;
+    }
+
+    public void addAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public void removeAnimal(Animal animal) {
+        this.animal = null;
     }
     
 
