@@ -13,19 +13,31 @@
             <h1> Mareka zoo dārzs</h1>
             <th:block th:include="/admin_button_page"></th:block>
         </div>
-   
-	<p>Informacija par zoo dārzu</p>
-	<p th:text="${zoo.getName()}"></p>
-	<p th:text="${zoo.getTown()}"></p>
-	<p th:text="${zoo.getPhone()}"></p>
 
-    <table>
-        <tr th:each="animal: ${zoo.getAnimals()}">
-            <td th:text="${animal.getTitle()} + ' | '"></td>
-            <td th:text="${animal.getFood()} + ' | '"></td>
-            <td th:text="${animal.getAnimalCount()} + ' | '"></td>
-        </tr>
-    </table>
+
+        <div class= "zoolist">
+            <table class="zoolist">
+            <th> Zoo name </th>
+            <th> Zoo town </th>
+            <th> Zoo phone number</th>
+            <tr>
+                <td th:text="${zoo.getName()}"></td>
+                <td th:text="${zoo.getTown()}"></td>
+                <td th:text="${zoo.getPhone()}"></td>
+            </tr>
+            </table>
+
+        <table class= "zoolist">
+
+            <th> Animal title </th>
+            <th> Eaten food </th>
+            <th> Animal count </th>
+            <tr th:each="animal: ${zoo.getAnimals()}">
+                <td th:text="${animal.getTitle()}"></td>
+                <td th:text="${animal.getFood()}"></td>
+                <td th:text="${animal.getAnimalCount()}"></td>
+            </tr>
+        </table>
     <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/animal/add/' + this.getAttribute('data-id')">Add animal</button>
     <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/zoo/list/' + this.getAttribute('data-id') + '/stats'">Tickets sold</button>
 

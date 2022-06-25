@@ -13,9 +13,11 @@
         </div>
 	<p>Lūdzu ievadiet jaunos zoo dārza informāciju</p>
 	
+	<div class= "create">
 	<form action = "#" th:action="@{/admin/zoo/updateZoo/__${id}__}" th:object="${updateZoo}" method="post">
 		
-		<table>
+
+			<table class= "create">
 			<tr>
 				<td> Name: </td>
 				<td> <input type="text" th:field="*{name}"> </td>
@@ -41,6 +43,7 @@
 		</table>	
 		<button type="submit">Submit </button>
 	</form>
+	</div>
 	
 	
 	</body>
