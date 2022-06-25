@@ -35,21 +35,27 @@ public class Zoo {
     @Column(name = "zooName")
     private String name;
 
-    @Column(name = "zooAddress")
-    private String address;
+    @Column(name = "zooTown")
+    private Town town;
 
     @Column(name = "zooPhone")
     private String phone;
 
-    @OneToMany(mappedBy = "zoo", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Enclosure> enclosures = new ArrayList<Enclosure>();
 
-    @OneToMany(mappedBy = "zoo", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<Animal> animals = new ArrayList<Animal>();
 
-    public Zoo(String name, String address, String phone) {
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<FoodAnimal> allFood = new ArrayList<FoodAnimal>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Collection<Ticket> allTickets = new ArrayList<Ticket>();
+
+    public Zoo(String name, Town town, String phone) {
         this.name = name;
-        this.address = address;
+        this.town = town;
         this.phone = phone;
 
     }
@@ -68,6 +74,14 @@ public class Zoo {
 
     public void removeAnimal(Animal animal) {
         this.animals.remove(animal);
+    }
+
+    public void addFood(FoodAnimal food){
+        this.allFood.add(food);
+    }
+
+    public void removeFood(FoodAnimal foodAnimal){
+        this.allFood.remove(foodAnimal);
     }
 
 

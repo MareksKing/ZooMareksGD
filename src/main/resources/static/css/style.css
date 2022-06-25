@@ -1,0 +1,26 @@
+.heading{
+    width: 100%;
+    background: #2D532C;
+    background: -moz-linear-gradient(left, #2D532C 0%, #11A41B 50%, #2D532C 100%);
+    background: -webkit-linear-gradient(left, #2D532C 0%, #11A41B 50%, #2D532C 100%);
+    background: linear-gradient(to right, #2D532C 0%, #11A41B 50%, #2D532C 100%);
+}
+
+
+.main{
+    background-color: white;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+body{
+    background-color: bisque;
+    margin: 0px;
+}
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: #ffffff;
+    }
+
+

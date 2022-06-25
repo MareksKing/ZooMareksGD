@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Mareka zoo dārzs</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+
+        <body>
+            <div class = "heading">
+                <h1> Mareka zoo dārzs</h1>
+                <th:block th:include="/user_button_page"></th:block>
+            </div>
+            <th:block th:include="/user_button_page"></th:block>
+            <table>
+                <tr th:each="zoo: ${zoos}">
+                <td th:text="${zoo.getName()} + ' | '"></td>
+                <td th:text="${zoo.getTown()} + ' | '"></td>
+                <td th:text="${zoo.getPhone()} + ' | '"></td>
+            </table>
+            </tr>
+        </body>
+        
+</html>

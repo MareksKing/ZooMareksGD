@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Mareka zoo dārzs</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+	
+	<body>
+		<div class = "heading">
+            <h1> Mareka zoo dārzs</h1>
+            <th:block th:include="/admin_button_page"></th:block>
+        </div>
+	
+	<p>Lūdzu ievadiet jauna dzīvnieka informāciju</p>
+	<form action = "#" th:action="@{/admin/animal/add/__${zooId}__}" th:object="${animal}" method="post">
+		
+		
+		<table>
+			<tr>
+				<td> Title: </td>
+				<td> <input type="text" th:field="*{title}"> </td>
+				<td th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></td>	
+			</tr>		
+				
+			<tr>
+				<td> Ēdiens: </td>
+                <td>
+                    <select name="food">
+                        <option th:each="animalFood : ${T(com.zoo.mareks.models.AnimalFoodType).values()}" 
+                        th:value="${animalFood}" th:text="${animalFood}"></option>
+                    </select>
+                </td>
+			</tr>
+
+			<tr>
+				<td> Quantity: </td>
+				<td> <input type="number" th:field="*{animalCount}"> </td>
+				<td th:if="${#fields.hasErrors('animalCount')}" th:errors="*{animalCount}"></td>	
+			</tr>	
+				
+					
+		</table>
+		<button type="submit">Submit</button>
+	</form>
+	
+	
+	</body>
+	
+</html>

@@ -1,11 +1,16 @@
 package com.zoo.mareks.service.implementations;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zoo.mareks.models.Animal;
+import com.zoo.mareks.models.AnimalFoodType;
+import com.zoo.mareks.models.Enclosure;
 import com.zoo.mareks.models.Zoo;
 import com.zoo.mareks.repo.IAnimalRepo;
+import com.zoo.mareks.repo.IEnclosureRepo;
 import com.zoo.mareks.repo.IZooRepo;
 import com.zoo.mareks.service.IAnimalService;
 
@@ -18,16 +23,31 @@ public class AnimalServiceImplementation implements IAnimalService {
     @Autowired
     private IZooRepo zooRepo;
 
+    @Autowired
+    private IEnclosureRepo enclosureRepo;
+
     @Override
     public void addAnimalToZooById(Animal animal, int zooId) throws Exception {
         if(!validateZooId(zooId)){throw new Exception("Zoo with id " + zooId + " does not exist");};
-
         Zoo zoo = zooRepo.findById(zooId).get();
-        //! parmainit ka var but vairaki tadi pasi dzivnieki viena zoo darza
-        if(animal.getZoo() == zoo){throw new Exception("Animal already in zoo");}
+        if(containsAnimal(animal, zooId)){
+            zoo.addAnimal(animal);
+            Enclosure enclosure = animalInEnclosure(animal, zoo.getEnclosures());
+            enclosure.addAnimal(animal);
+            animal.addEnclosure(enclosure);
+            enclosureRepo.save(enclosure);
+            zooRepo.save(zoo);
 
-        zoo.addAnimal(animal);
-        animal.addZoo(zoo);
+        } else {
+            zoo.addAnimal(animal);
+            animal.addZoo(zoo);
+            Enclosure enclosure = new Enclosure(animal, zoo);
+            animal.addEnclosure(enclosure);
+            zoo.addEnclosure(enclosure);
+            enclosureRepo.save(enclosure);
+            zooRepo.save(zoo);
+        }
+
         
     }
 
@@ -41,6 +61,8 @@ public class AnimalServiceImplementation implements IAnimalService {
 
         zoo.removeAnimal(animal);
         animal.removeZoo(zoo);
+        zooRepo.save(zoo);
+        animalRepo.delete(animal);
     }
 
     @Override
@@ -80,5 +102,25 @@ public class AnimalServiceImplementation implements IAnimalService {
         }
         return animalRepo.existsById(animalId);
     }
+
+    private boolean containsAnimal(Animal animal, int zooId){
+        Zoo zoo = zooRepo.findById(zooId).get();
+        for (Animal inZooAnimal : zoo.getAnimals()) {
+            if(inZooAnimal.getTitle() == animal.getTitle() && inZooAnimal.getFood() == animal.getFood()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Enclosure animalInEnclosure(Animal animal, Collection<Enclosure> enclosures){
+        for (Enclosure enclosure : enclosures) {
+            Animal animalInEnclosure = enclosure.getAnimal();
+            if(animalInEnclosure.getTitle() == animal.getTitle() && animalInEnclosure.getFood() == animal.getFood()){
+                return enclosure;
+            }
+        }
+        return new Enclosure(animal);
+    }   
 
 }

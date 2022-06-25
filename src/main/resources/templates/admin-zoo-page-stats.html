@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Mareka zoo dārzs</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+
+
+	<body>
+    
+    <div class = "heading">
+        <h1> Mareka zoo dārzs</h1>
+        <th:block th:include="/admin_button_page"></th:block>
+    </div>
+    
+    <table>
+        <tr th:each="ticketSold : ${tickets}">
+            <td> Average visitor count per hour: </td>
+            <td th:text="${ticketSold}"></td>
+
+        </tr>
+        <tr th:each="days: ${foodSituation}">
+            <td>Days with food supply left: </td>
+            <td th:text="${days}"></td>
+        </tr>
+    </table>
+    <!-- <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/animal/add/' + this.getAttribute('data-id')">Add animal</button>
+    <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/zoo/list/' + this.getAttribute('data-id') + '/stats'">Tickets sold</button> -->
+
+    </body>
+
+	
+</html>

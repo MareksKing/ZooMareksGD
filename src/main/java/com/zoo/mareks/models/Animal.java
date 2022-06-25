@@ -35,24 +35,31 @@ public class Animal {
     private String title;
 
     @Column(name = "animalFood")
-    private AnimalFood food;
+    private AnimalFoodType food;
 
-    @OneToOne(mappedBy = "animal")
+    @Column(name = "animalCount")
+    private int animalCount;
+
+    @ManyToOne
+    @JoinColumn(name = "enclosureId")
+    @ToString.Exclude
     private Enclosure enclosure;
 
     @ManyToOne
     @JoinColumn(name = "zooId")
     private Zoo zoo;
 
-    public Animal(String title, AnimalFood food) {
+    public Animal(String title, AnimalFoodType food, int animalCount) {
         this.title = title;
         this.food = food;
+        this.animalCount = animalCount;
     }
 
-    public Animal(String title, AnimalFood food, Enclosure enclosure) {
+    public Animal(String title, AnimalFoodType food, Enclosure enclosure, int animalCount) {
         this.title = title;
         this.food = food;
         addEnclosure(enclosure);
+        this.animalCount = animalCount;
     }
 
     public void addEnclosure(Enclosure enclosure) {

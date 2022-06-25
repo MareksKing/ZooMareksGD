@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -31,28 +32,44 @@ public class Ticket {
     @Setter(value = AccessLevel.NONE)
     private int ticketId;
 
-    @OneToOne
-    private Visitor visitor;
+    // @OneToOne
+    // private Visitor visitor;
+
+    @Column(name = "visitorName")
+    private String visitorName;
+
+    @Column(name = "visitorSurname")
+    private String visitorSurname;
 
     @Column(name = "ticketType")
     private TicketType ticketType;
 
-    public Ticket(Visitor visitor, TicketType ticketType) {
-        this.ticketType = ticketType;
-        this.visitor = visitor;
-    }
+    @ManyToOne
+    @JoinColumn(name = "zooId")
+    private Zoo zoo;
+
+    // public Ticket(Visitor visitor, TicketType ticketType) {
+    //     this.ticketType = ticketType;
+    //     this.visitor = visitor;
+    // }
 
     public Ticket(TicketType ticketType) {
         this.ticketType = ticketType;
     }
 
-    public void addVisitor(Visitor visitor) {
-        this.visitor = visitor;
+    public Ticket(String name, String surname, TicketType ticketType){
+        this.visitorName = name;
+        this.visitorSurname = surname;
+        this.ticketType = ticketType;
     }
 
-    public void removeVisitor() {
-        this.visitor = null;
-    }
+    // public void addVisitor(Visitor visitor) {
+    //     this.visitor = visitor;
+    // }
+
+    // public void removeVisitor() {
+    //     this.visitor = null;
+    // }
 
 
 }

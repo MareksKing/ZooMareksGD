@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zoo.mareks.models.Animal;
+import com.zoo.mareks.models.Town;
 import com.zoo.mareks.models.Zoo;
+import com.zoo.mareks.repo.IAnimalRepo;
 import com.zoo.mareks.repo.IZooRepo;
 import com.zoo.mareks.service.IOtherService;
 
@@ -16,6 +18,11 @@ public class OtherServiceImplementation implements IOtherService {
 
     @Autowired
     private IZooRepo zooRepo;
+    
+    @Autowired
+    private IAnimalRepo animalRepo;
+
+
     @Override
     public Collection<Zoo> selectAllZoosByAnimal(Animal animal) {
         Collection<Zoo> allZoosWithAnimal = new ArrayList<Zoo>();
@@ -28,13 +35,15 @@ public class OtherServiceImplementation implements IOtherService {
     }
 
     @Override
-    public Zoo searchForZooByAddress(String address) {
-        for (Zoo zoo : zooRepo.findAll()) {
-            if (zoo.getAddress().equals(address)) {
-                return zoo;
-            }
-        }
-        return null;
+    public Zoo searchForZooByAddress(Town town) {
+        return zooRepo.findByTown(town);
     }
 
+    @Override
+    public Collection<Animal> allAnimalsInAllZoos(){
+        Collection<Animal> allAnimals = (Collection<Animal>) animalRepo.findAll();
+        return allAnimals;
+    }
+
+    
 }

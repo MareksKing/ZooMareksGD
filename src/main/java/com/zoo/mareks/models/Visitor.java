@@ -37,13 +37,13 @@ public class Visitor {
     @Column(name = "visitorSurname")
     private String visitorSurname;
 
-    @OneToOne(mappedBy = "visitor", cascade = CascadeType.ALL)
-    private Ticket ticket;
+    // @OneToOne(mappedBy = "visitor", cascade = CascadeType.ALL)
+    // private Ticket ticket;
 
     public Visitor(String visitorName, String visitorSurname, Ticket ticket) {
         this.visitorName = visitorName;
         this.visitorSurname = visitorSurname;
-        this.ticket = ticket;
+        // this.ticket = ticket;
     }
 
     public Visitor(String visitorName, String visitorSurname) {
@@ -51,13 +51,13 @@ public class Visitor {
         this.visitorSurname = visitorSurname;
     }
 
-    public void addTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
+    // public void addTicket(Ticket ticket) {
+    //     this.ticket = ticket;
+    // }
 
-    public void removeTicket() {
-        this.ticket = null;
-    }
+    // public void removeTicket() {
+    //     this.ticket = null;
+    // }
 
     
 }

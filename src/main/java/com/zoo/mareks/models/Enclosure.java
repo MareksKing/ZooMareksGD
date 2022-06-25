@@ -1,5 +1,8 @@
 package com.zoo.mareks.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,23 +36,35 @@ public class Enclosure {
     private int enclosureId;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Animal animal;
 
+    @Column(name = "enclosureName")
+    private String enclosureName;
+    
+    
     @ManyToOne
     @JoinColumn(name = "zooId")
     private Zoo zoo;
     
     public Enclosure(Animal animal) {
         this.animal = animal;
+        addEnclosureName(animal);
     }
 
     public Enclosure(Animal animal, Zoo zoo) {
         this.animal = animal;
+        addEnclosureName(animal);
         this.zoo = zoo;
     }
 
     public Enclosure(Zoo zoo) {
         this.zoo = zoo;
+        this.enclosureName = "Empty enclosure";
+    }
+
+    public void addEnclosureName(Animal animal){
+        this.enclosureName = animal.getTitle() + " Enclosure";
     }
 
     public void addAnimal(Animal animal) {

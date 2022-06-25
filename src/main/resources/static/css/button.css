@@ -1,0 +1,8 @@
+button{
+    background-color: #242424;
+    color: rgb(255, 255, 255);
+    border: 2px solid #af634c;
+    margin-left: 20px;
+    margin-right: 5px;
+    display: inline-block;
+}
