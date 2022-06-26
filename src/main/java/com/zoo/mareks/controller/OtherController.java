@@ -16,39 +16,55 @@ import com.zoo.mareks.service.IOtherService;
 
 @Controller
 public class OtherController {
-    
+
     @Autowired
     private IOtherService otherService;
 
-    // @GetMapping("/zooListByAnimal")
-    // public String selectAllZoosByAnimal(Animal animal){
-    //     model.addAttribute("allAnimals", otherService.allAnimalsInAllZoos());
-    //     return "search-animal-page";
+    // @GetMapping("/zooListByAnimal") //localhost:8080/zooListByAnimal
+    // public String selectAllZoosByAnimal(Animal animal, Model model){
+    // model.addAttribute("animal", otherService.allAnimalsInAllZoos());
+    // return "search-animal-page";
     // }
 
     // @PostMapping("/zooListByAnimal")
-    // public String postSelectAllZoosByAnimal(Animal animal, BindingResult result, Model model){
-    //     if (result.hasErrors()) {
-    //         return "search-animal-page";
-    //     }
-    //     model.addAttribute("zoos", otherService.selectAllZoosByAnimal(animal));
-    //     return "all-animal-page";  
+    // public String postSelectAllZoosByAnimal(Animal animal, Model model){
+    // model.addAttribute("zoos", otherService.selectAllZoosByAnimal(animal));
+    // return "all-animal-page";
     // }
 
+    /**
+     * This function will return a list of all zoos in a given town
+     * 
+     * @param town the town object that is passed to the method
+     * @return A string.
+     */
     @GetMapping("/zooListByAddress")
-    public String searchForZooByAddress(Town town){
+    public String searchForZooByAddress(Town town) {
         return "all-address-page";
     }
 
-    @PostMapping("/zooListByAddress")
-    public String postSearchForZooByAddress(Town town, Model model){
+    /**
+     * It takes a town object, searches for a zoo in that town, and then redirects
+     * to the zoo's page
+     * 
+     * @param town  Town
+     * @param model Model
+     * @return A redirect to the zoo page.
+     */
+    @PostMapping("/zooListByAddress") //localhost:8080/zooListByAddress
+    public String postSearchForZooByAddress(Town town, Model model) {
         Zoo zoo = otherService.searchForZooByAddress(town);
 
         return "redirect:/zoo/" + zoo.getZooId();
-      }
+    }
 
-    @GetMapping("/home")
-    public String homePage(){
+    /**
+     * It returns the site for the user
+     * 
+     * @return The home-page.html file
+     */
+    @GetMapping("/home") //localhost:8080/home
+    public String homePage() {
         return "home-page";
     }
 }

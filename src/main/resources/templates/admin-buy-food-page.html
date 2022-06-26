@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Mareka zoo dārzs</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div class="heading">
+		<h1> Mareka zoo dārzs</h1>
+		<th:block th:include="/admin_button_page"></th:block>
+	</div>
+
+	<div class="main">
+
+		<p>Lūdzu ievadiet jauna dzīvnieka informāciju</p>
+			<form action="#" th:action="@{/admin/zoo/buyFood/__${id}__}" th:object="${foodAnimal}" method="post">
+
+
+
+				<table class="create">
+					<tr>
+						<td> Food type: </td>
+                        <td>
+                            <select name="foodType">
+                                <option th:each="animalFood : ${T(com.zoo.mareks.models.AnimalFoodType).values()}"
+                                th:value="${animalFood}" th:text="${animalFood}"></option>
+                            </select>
+                        </td>
+					</tr>
+
+					<tr>
+						<td> Quantity: </td>
+                        <td> <input type="number" th:field="*{quantity}"> </td>
+                        <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
+					</tr>
+
+					<tr>
+						<td> Delivery date: </td>
+						<td> <input type="date" th:field="*{deliveryDate}"> </td>
+						<td th:if="${#fields.hasErrors('deliveryDate')}" th:errors="*{deliveryDate}"></td>
+					</tr>
+
+                    <tr>
+                        <td> Expiry date: </td>
+                        <td> <input type="date" th:field="*{expiryDate}"> </td>
+						<td th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}"></td>
+                    </tr>
+
+
+				</table>
+				<button type="submit">Submit</button>
+			</form>
+
+		</div>
+
+</body>
+
+</html>

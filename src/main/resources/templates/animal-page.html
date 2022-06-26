@@ -1,23 +1,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mareka zoo dārzs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<div class="heading">
+    <h1> Mareka zoo dārzs</h1>
+    <th:block th:include="/user_button_page"></th:block>
+</div>
 
-	<body>
-        <div class = "heading">
-            <h1> Mareka zoo dārzs</h1>
-            <th:block th:include="/user_button_page"></th:block>
-        </div>
-    
-	<p>Informacija par dzīvnieku</p>
-	<p th:text="${animal.getTitle()}"></p>
-	<p th:text="${animal.getEnclosure()}"></p>
-	<p th:text="${animal.getZoo()}"></p>
-	</body>
-	
+<body>
+    <div class="main">
+        <p>Informacija par dzīvnieku</p>
+        <table class="zooList">
+            <th> Title </th>
+            <th> Enclosure </th>
+            <th> Zoo </th>
+            <tr>
+                <td th:text="${animal.getTitle()}"></td>
+                <td th:text="${animal.getEnclosure().getEnclosureName()}"></td>
+                <td th:text="${animal.getZoo().getName()}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
 </html>

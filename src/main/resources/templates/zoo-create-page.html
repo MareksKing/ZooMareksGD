@@ -1,52 +1,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
-	<body>
-		<div class = "heading">
-			<h1> Mareka zoo dārzs</h1>
-			<th:block th:include="/admin_button_page"></th:block>
-		</div>
-	
-	<p>Lūdzu ievadiet jauna zoo dārza informāciju</p>
-	<form action = "#" th:action="@{/admin/zoo/createNewZoo}" th:object="${zoo}" method="post">
-		
-		<div class="create">
 
-			<table class="create">
-				<tr>
-					<td> Name: </td>
-					<td> <input type="text" th:field="*{name}"> </td>
-					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>	
-				</tr>		
-				
-				<tr>
-					<td> Town: </td>
-					<td>
-						<select name="town">
-							<option th:each="town : ${T(com.zoo.mareks.models.Town).values()}" 
-							th:value="${town}" th:text="${town}"></option>
-						</select>
-					</td>
-				</tr>
-				
-			<tr>
-				<td> Phone number: </td>
-				<td> <input type="text" th:field="*{phone}"> </td>
-				<td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>	
-			</tr>
-			
-			
-		</table>
-	</div> 
-		<button type="submit">Submit</button>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Mareka zoo dārzs</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div class="heading">
+		<h1> Mareka zoo dārzs</h1>
+		<th:block th:include="/admin_button_page"></th:block>
+	</div>
+	<div class="main">
+
+		<p>Lūdzu ievadiet jauna zoo dārza informāciju</p>
+		<form action="#" th:action="@{/admin/zoo/createNewZoo}" th:object="${zoo}" method="post">
+
+				<table class="create">
+					<tr>
+						<td> Name: </td>
+						<td> <input type="text" th:field="*{name}"> </td>
+						<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+					</tr>
+
+					<tr>
+						<td> Town: </td>
+						<td>
+							<select name="town">
+								<option th:each="town : ${T(com.zoo.mareks.models.Town).values()}" th:value="${town}"
+									th:text="${town}"></option>
+							</select>
+						</td>
+					</tr>
+
+					<tr>
+						<td> Phone number: </td>
+						<td> <input type="text" th:field="*{phone}"> </td>
+						<td th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
+					</tr>
+
+
+				</table>
+				<button type="submit">Submit</button>
+			</div>
+	</div>
 	</form>
-	
-	
-	</body>
-	
+
+
+</body>
+
 </html>

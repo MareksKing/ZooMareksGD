@@ -1,22 +1,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mareka zoo dārzs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
 
-	<body>
-        <div class = "heading">
-            <h1> Mareka zoo dārzs</h1>
-            <th:block th:include="/admin_button_page"></th:block>
-        </div>
+<body>
+    <div class="heading">
+        <h1> Mareka zoo dārzs</h1>
+        <th:block th:include="/admin_button_page"></th:block>
+    </div>
 
 
-        <div class= "zoolist">
-            <table class="zoolist">
+    <div class="main">
+        <table class="zoolist">
             <th> Zoo name </th>
             <th> Zoo town </th>
             <th> Zoo phone number</th>
@@ -24,10 +24,18 @@
                 <td th:text="${zoo.getName()}"></td>
                 <td th:text="${zoo.getTown()}"></td>
                 <td th:text="${zoo.getPhone()}"></td>
-            </tr>
-            </table>
+                <td> <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}"
+                        onclick="window.location.href='/admin/animal/add/' + this.getAttribute('data-id')">Add
+                        animal</button></td>
 
-        <table class= "zoolist">
+                <td><button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}"
+                        onclick="window.location.href='/admin/zoo/list/' + this.getAttribute('data-id') + '/stats'">Statistics
+                    </button></td>
+            </tr>
+
+        </table>
+
+        <table class="zoolist">
 
             <th> Animal title </th>
             <th> Eaten food </th>
@@ -36,12 +44,15 @@
                 <td th:text="${animal.getTitle()}"></td>
                 <td th:text="${animal.getFood()}"></td>
                 <td th:text="${animal.getAnimalCount()}"></td>
+                <td><button class="button button5" th:with="animalID=${animal.getAnimalId()}" th:animal-id="${animalID}"
+                    onclick="window.location.href='/admin/animal/remove/' +this.getAttribute('animal-id') + '/' + this.getAttribute(zoo.getZooId())">Remove animal
+                </button></td>
             </tr>
         </table>
-    <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/animal/add/' + this.getAttribute('data-id')">Add animal</button>
-    <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/admin/zoo/list/' + this.getAttribute('data-id') + '/stats'">Tickets sold</button>
 
-    </body>
 
-	
+
+</body>
+
+
 </html>

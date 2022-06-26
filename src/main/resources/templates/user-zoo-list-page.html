@@ -1,29 +1,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mareka zoo dārzs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
 
-        <body>
-            <div class = "heading">
-                <h1> Mareka zoo dārzs</h1>
-                <th:block th:include="/user_button_page"></th:block>
-            </div>
-            <table>
+<body>
+    <div class="heading">
+        <h1> Mareka zoo dārzs</h1>
+        <th:block th:include="/user_button_page"></th:block>
+    </div>
+    <div class="main">
+
+        <div class="tabula">
+            <table class="zooList">
+                <th> Zoo name </th>
+                <th> Location </th>
+                <th> Phone number </th>
                 <tr th:each="zoo: ${zoos}">
-                <td th:text="${zoo.getName()} + ' | '"></td>
-                <td th:text="${zoo.getTown()} + ' | '"></td>
-                <td th:text="${zoo.getPhone()} + ' | '"></td>
-                <td th:text="${zoo.getZooId()}"></td>
-                
-                <!-- https://stackoverflow.com/questions/68675732/thymeleaf-variable-as-a-button -->
-                <td> <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}" onclick="window.location.href='/zoo/' + this.getAttribute('data-id')+ '/buyNewTicket'">Buy a ticket!</button> </td>
+                    <td th:text="${zoo.getName()}"></td>
+                    <td th:text="${zoo.getTown()}"></td>
+                    <td th:text="${zoo.getPhone()}"></td>
+
+                    <!-- https://stackoverflow.com/questions/68675732/thymeleaf-variable-as-a-button -->
+                    <td> <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}"
+                            onclick="window.location.href='/zoo/' + this.getAttribute('data-id')+ '/buyNewTicket'">Buy a
+                            ticket!</button> </td>
+                    <td> <button class="button button5" th:with="zooID=${zoo.getZooId()}" th:data-id="${zooID}"
+                            onclick="window.location.href='/zoo/list/' + this.getAttribute('data-id')">Animals in
+                            zoo</button> </td>
+                </tr>
             </table>
-            </tr>
-        </body>
-        
+        </div>
+    </div>
+</body>
+
 </html>

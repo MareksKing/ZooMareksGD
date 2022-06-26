@@ -1,37 +1,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
-	<body>
-        <div class = "heading">
-            <h1> Mareka zoo dārzs</h1>
-            <th:block th:include="/user_button_page"></th:block>
-        </div>
-	<p>Lūdzu izvēlaties dzīvnieku pēc ko meklēsiet zoo dārzus</p>
-    <form>
-    <table>
-        <tr>
-            <td>Izvēlaties dzīvnieku:</td>
-            <td>
-                <select th:field="*{animal}">
-                     <option th:each="animal : ${allAnimals}"
-                        th:value="${animal.getAnimalId()}"
-                        th:utext="${animal.getTitle()}">
-                </select>
-            <td th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}"></td>
-            </td>
-        </tr>
-    </table>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mareka zoo dārzs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="heading">
+        <h1> Mareka zoo dārzs</h1>
+        <th:block th:include="/user_button_page"></th:block>
+    </div>
+    <p>Lūdzu izvēlaties dzīvnieku pēc ko meklēsiet zoo dārzus</p>
+    <form action="#" th:action="@{/zooListByAnimal}" th:object="${animal}" method="post">
+        <table class="find">
+            <tr>
+                <td>Izvēlaties dzīvnieku:</td>
+                <td>
+                    <select th:field="*{animal}">
+                        <option th:each="animal : ${animal}" th:value="${animal.getAnimalId()}"
+                            th:utext="${animal.getTitle()}">
+                    </select>
+                <td th:if="${#fields.hasErrors('animal')}" th:errors="*{animal}"></td>
+                </td>
+            </tr>
+        </table>
 
 
-	<button type="submit">Search</button>
-	</form>
-	
-	
-	</body>
-	
+        <button type="submit">Search</button>
+    </form>
+
+
+</body>
+
 </html>

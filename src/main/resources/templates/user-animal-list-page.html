@@ -1,24 +1,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Mareka zoo dārzs</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link th:href="@{/css/style.css}" rel="stylesheet">
-    </head>
-    <body>
-        <div class = "heading">
-            <h1> Mareka zoo dārzs</h1>
-            <th:block th:include="/user_button_page"></th:block>
-        </div>
-            <table>
-                <tr th:each="animal: ${animals}">
-                <td th:text="${animal.getTitle()} + ' | '"></td>
-                <td th:text="${animal.getZoo().getName()} + ' | '"></td>
-                <td th:text="${animal.getFood()} + ' | '"></td>
-            </table>
-            </tr>
-        </body>
-        
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Mareka zoo dārzs</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="heading">
+        <h1> Mareka zoo dārzs</h1>
+        <th:block th:include="/user_button_page"></th:block>
+    </div>
+    <div class="main">
+        <table class="zooList">
+            <th> Animal title </th>
+            <th> Location </th>
+            <th> Food </th>
+            <tr th:each="animal: ${animals}">
+                <td th:text="${animal.getTitle()}"></td>
+                <td th:text="${animal.getZoo().getName()}"></td>
+                <td th:text="${animal.getFood()}"></td>
+        </table>
+        </tr>
+    </div>
+</body>
+
 </html>
