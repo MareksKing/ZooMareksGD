@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zoo.mareks.models.Animal;
-import com.zoo.mareks.models.AnimalFoodType;
 import com.zoo.mareks.models.Enclosure;
 import com.zoo.mareks.models.Zoo;
 import com.zoo.mareks.repo.IAnimalRepo;

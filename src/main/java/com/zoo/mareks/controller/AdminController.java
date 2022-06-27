@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.zoo.mareks.models.Animal;
 import com.zoo.mareks.models.FoodAnimal;
 import com.zoo.mareks.models.Zoo;
 import com.zoo.mareks.service.IAnimalService;
 import com.zoo.mareks.service.IZooService;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/admin")

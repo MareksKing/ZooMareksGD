@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zoo.mareks.models.Ticket;
-import com.zoo.mareks.models.Zoo;
 import com.zoo.mareks.service.IZooService;
 
 @Controller

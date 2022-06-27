@@ -1,22 +1,22 @@
 package com.zoo.mareks;
 
-import org.springframework.boot.CommandLineRunner;
+// import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Bean;
 
-import com.zoo.mareks.models.Animal;
-import com.zoo.mareks.models.AnimalFoodType;
-import com.zoo.mareks.models.Enclosure;
-import com.zoo.mareks.models.Ticket;
-import com.zoo.mareks.models.TicketType;
-import com.zoo.mareks.models.Visitor;
-import com.zoo.mareks.models.Zoo;
-import com.zoo.mareks.repo.IAnimalRepo;
-import com.zoo.mareks.repo.IEnclosureRepo;
-import com.zoo.mareks.repo.ITicketRepo;
-import com.zoo.mareks.repo.IVisitorRepo;
-import com.zoo.mareks.repo.IZooRepo;
+// import com.zoo.mareks.models.Animal;
+// import com.zoo.mareks.models.AnimalFoodType;
+// import com.zoo.mareks.models.Enclosure;
+// import com.zoo.mareks.models.Ticket;
+// import com.zoo.mareks.models.TicketType;
+// import com.zoo.mareks.models.Visitor;
+// import com.zoo.mareks.models.Zoo;
+// import com.zoo.mareks.repo.IAnimalRepo;
+// import com.zoo.mareks.repo.IEnclosureRepo;
+// import com.zoo.mareks.repo.ITicketRepo;
+// import com.zoo.mareks.repo.IVisitorRepo;
+// import com.zoo.mareks.repo.IZooRepo;
 
 @SpringBootApplication
 public class MareksApplication {
